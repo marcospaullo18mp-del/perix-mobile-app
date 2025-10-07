@@ -1,0 +1,63 @@
+{
+  "expo": {
+    "name": "PERIX Mobile App",
+    "slug": "perix-mobile-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.perix.mobileapp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.perix.mobileapp",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "name": "PERIX Mobile App",
+      "shortName": "PERIX",
+      "lang": "pt-BR"
+    },
+    "plugins": [
+      "expo-linear-gradient",
+      "expo-font",
+      "expo-splash-screen",
+      "expo-image-picker",
+      "expo-location",
+      "expo-notifications",
+      "expo-sensors",
+      "expo-haptics",
+      "expo-sharing",
+      "expo-av",
+      "expo-file-system",
+      "expo-web-browser",
+      "expo-auth-session",
+      "expo-app-loading"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "perix-mobile-app"
+      }
+    }
+  }
+}
