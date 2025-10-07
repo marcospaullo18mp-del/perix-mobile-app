@@ -1,0 +1,51 @@
+name: Expo Development Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  expo-development:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v3
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: npm
+
+      - name: 🏗 Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🚀 Start Expo Server
+        run: |
+          npm install -g expo-cli
+          expo start --tunnel &
+          sleep 10  # Aguarda o servidor iniciar
+
+      - name: 💬 Comment on PR
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Expo development server está rodando!\n\nPara visualizar o app:\n1. Instale o Expo Go no seu celular\n2. Escaneie o QR Code que aparecerá nos logs da action\n3. Ou acesse pelo link que será gerado'
+            })
+
+      - name: ⌛ Keep server running
+        run: sleep 3600  # Mantém o servidor rodando por 1 hora
